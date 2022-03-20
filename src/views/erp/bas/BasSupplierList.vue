@@ -29,7 +29,7 @@
       </a-form>
     </div>
     <!-- 查询区域-END -->
-    
+
     <!-- 操作按钮区域 -->
     <div class="table-operator">
       <a-button type="link" @click="myHandleAdd" icon="plus">新增</a-button>
@@ -120,6 +120,18 @@
             width:160,
             align:"left",
             dataIndex: 'shortName'
+          },
+          {
+              title:'法人',
+              width:75,
+              align:"center",
+              dataIndex: 'corporate'
+            },
+          {
+            title:'电话',
+            width:75,
+            align:"center",
+            dataIndex: 'corporatePhone'
           },
           {
             title:'等级',
