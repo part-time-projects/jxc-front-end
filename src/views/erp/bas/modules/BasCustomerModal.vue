@@ -29,7 +29,7 @@
               <a-input v-decorator="[ 'name', validatorRules.name]" placeholder="请输入名称"></a-input>
             </a-form-item>
           </a-col>
-          <a-col :span="12">
+<!--          <a-col :span="12">
             <a-form-item label="简称" :labelCol="labelCol" :wrapperCol="wrapperCol">
               <a-input v-decorator="[ 'shortName', validatorRules.shortName]" placeholder="请输入简称"></a-input>
             </a-form-item>
@@ -44,7 +44,7 @@
               <a-input v-decorator="[ 'taxScale', validatorRules.taxScale]" placeholder="请输入纳税规模"></a-input>
             </a-form-item>
           </a-col>
-          <a-col :span="12">
+         <a-col :span="12">
             <a-form-item label="欠款额度" :labelCol="labelCol" :wrapperCol="wrapperCol">
               <a-input-number v-decorator="[ 'arrearsLimit', validatorRules.arrearsLimit]" placeholder="请输入欠款额度" style="width: 100%"/>
             </a-form-item>
@@ -64,19 +64,20 @@
               <a-input v-decorator="[ 'bizArea', validatorRules.bizArea]" placeholder="请输入业务区域"></a-input>
             </a-form-item>
           </a-col>
-          <a-col :span="12">
+         <a-col :span="12">
             <a-form-item label="客户网站" :labelCol="labelCol" :wrapperCol="wrapperCol">
               <a-input v-decorator="[ 'website', validatorRules.website]" placeholder="请输入客户网站"></a-input>
             </a-form-item>
           </a-col>
+          -->
           <a-col :span="12">
-            <a-form-item label="法人代表" :labelCol="labelCol" :wrapperCol="wrapperCol">
-              <a-input v-decorator="[ 'corporate', validatorRules.corporate]" placeholder="请输入法人代表"></a-input>
+            <a-form-item label="联系人姓名" :labelCol="labelCol" :wrapperCol="wrapperCol">
+              <a-input v-decorator="[ 'corporate', validatorRules.corporate]" placeholder="请输入联系人姓名"></a-input>
             </a-form-item>
           </a-col>
           <a-col :span="12">
-            <a-form-item label="法人电话" :labelCol="labelCol" :wrapperCol="wrapperCol">
-              <a-input v-decorator="[ 'corporatePhone', validatorRules.corporatePhone]" placeholder="请输入法人电话"></a-input>
+            <a-form-item label="联系人电话" :labelCol="labelCol" :wrapperCol="wrapperCol">
+              <a-input v-decorator="[ 'corporatePhone', validatorRules.corporatePhone]" placeholder="请输入联系人电话"></a-input>
             </a-form-item>
           </a-col>
           <a-col :span="12">
@@ -84,6 +85,7 @@
               <a-input v-decorator="[ 'address', validatorRules.address]" placeholder="请输入客户地址"></a-input>
             </a-form-item>
           </a-col>
+          <!--
           <a-col :span="12">
             <a-form-item label="财务信息联系人" :labelCol="labelCol" :wrapperCol="wrapperCol">
               <a-input v-decorator="[ 'contactsFinancial', validatorRules.contactsFinancial]" placeholder="请输入财务信息联系人"></a-input>
@@ -174,6 +176,7 @@
               <a-input v-decorator="[ 'faxReceipt', validatorRules.faxReceipt]" placeholder="请输入收件信息传真"></a-input>
             </a-form-item>
           </a-col>
+          -->
           <a-col :span="12">
             <a-form-item label="是否启用" :labelCol="labelCol" :wrapperCol="wrapperCol">
               <j-dict-select-tag type="list" v-decorator="['isEnabled', validatorRules.isEnabled]" :trigger-change="true" dictCode="yn" placeholder="请选择是否启用"/>
@@ -226,7 +229,7 @@
 
   export default {
     name: "BasCustomerModal",
-    components: { 
+    components: {
       JDate,
       JUpload,
       JDictSelectTag,
@@ -387,7 +390,7 @@
               that.close();
             })
           }
-         
+
         })
       },
       handleCancel () {
@@ -397,7 +400,7 @@
         this.form.setFieldsValue(pick(row,'code','name','shortName','customerLevelId','taxScale','arrearsLimit','headquarters','area','bizArea','website','corporate','corporatePhone','address','contactsFinancial','phoneFinancial','unitInvoice','bankInvoice','bankidInvoice','taxInvoice','phoneInvoice','accountInvoice','addressInvoice','unitPayment','bankPayment','bankidPayment','accountPayment','accountReceipt','postcodeReceipt','addressReceipt','phoneReceipt','faxReceipt','attachment','remark','isEnabled','createBy','createTime','updateBy','updateTime'))
       },
 
-      
+
     }
   }
 </script>

@@ -4,11 +4,11 @@
     <div class="table-page-search-wrapper">
       <a-form layout="inline" @keyup.enter.native="searchQuery">
         <a-row :gutter="24">
-          <a-col :xl="6" :lg="7" :md="8" :sm="24">
+<!--          <a-col :xl="6" :lg="7" :md="8" :sm="24">
             <a-form-item label="编码">
               <a-input placeholder="请输入编码" v-model="queryParam.code"></a-input>
             </a-form-item>
-          </a-col>
+          </a-col>-->
           <a-col :xl="6" :lg="7" :md="8" :sm="24">
             <a-form-item label="名称">
               <a-input placeholder="请输入名称" v-model="queryParam.name"></a-input>
@@ -115,7 +115,7 @@
             align:"left",
             dataIndex: 'name'
           },
-          {
+          /*{
             title:'简称',
             width:160,
             align:"center",
@@ -145,8 +145,15 @@
             align:"center",
             dataIndex: 'website'
           },
+           */
           {
-            title:'法人电话',
+            title:'联系人姓名',
+            width:120,
+            align:"center",
+            dataIndex: 'corporate'
+          },
+          {
+            title:'联系人电话',
             width:120,
             align:"center",
             dataIndex: 'corporatePhone'
