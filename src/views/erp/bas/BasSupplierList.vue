@@ -172,7 +172,7 @@
             title:'是否启用',
             width:75,
             align:"center",
-            dataIndex: 'isEnabled'
+            dataIndex: 'isEnabled_dictText'
           },
           {
             title: '操作',
