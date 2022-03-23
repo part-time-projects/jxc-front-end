@@ -55,14 +55,14 @@
       </a-form>
     </div>
     <!-- 查询区域-END -->
-    
+
     <!-- 操作按钮区域 -->
     <div class="table-operator">
       <a-button @click="myHandleAdd" type="link" icon="plus">新增</a-button>
-      <a-button type="link" icon="download" @click="handleExportXls('出入库单')">导出</a-button>
+      <!--      <a-button type="link" icon="download" @click="handleExportXls('出入库单')">导出</a-button>
       <a-upload name="file" :showUploadList="false" :multiple="false" :headers="tokenHeader" :action="importExcelUrl" @change="handleImportExcel">
         <a-button type="link" icon="import">导入</a-button>
-      </a-upload>
+      </a-upload>-->
 
       <a-dropdown v-if="selectedRowKeys.length > 0">
         <a-menu slot="overlay">
