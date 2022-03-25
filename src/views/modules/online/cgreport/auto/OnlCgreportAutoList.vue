@@ -39,7 +39,7 @@
 
 
     <div class="table-operator" style="margin-bottom: 10px">
-      <a-button type="primary" icon="plus" @click="exportExcel">导出</a-button>
+      <!--      <a-button type="primary" icon="plus" @click="exportExcel">导出</a-button>-->
     </div>
 
 

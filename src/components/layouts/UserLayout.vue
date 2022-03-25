@@ -8,9 +8,11 @@
             <span class="title">进销存</span>
           </a>
         </div>
+        <!--
         <div class="desc">
           开放，合作，更快更好更卓越......
         </div>
+        -->
       </div>
 
       <route-view></route-view>
@@ -19,23 +21,23 @@
 </template>
 
 <script>
-  import RouteView from "@/components/layouts/RouteView"
-  import { mixinDevice } from '@/utils/mixin.js'
+import RouteView from '@/components/layouts/RouteView'
+import { mixinDevice } from '@/utils/mixin.js'
 
-  export default {
-    name: "UserLayout",
+export default {
+    name: 'UserLayout',
     components: { RouteView },
     mixins: [mixinDevice],
     data () {
-      return {}
+        return {}
     },
     mounted () {
-      document.body.classList.add('userLayout')
+        document.body.classList.add('userLayout')
     },
     beforeDestroy () {
-      document.body.classList.remove('userLayout')
-    },
-  }
+        document.body.classList.remove('userLayout')
+    }
+}
 </script>
 
 <style lang="less" scoped>

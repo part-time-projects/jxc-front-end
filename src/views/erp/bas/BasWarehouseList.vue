@@ -1,13 +1,13 @@
 <template>
   <a-card :bordered="false">
-    
+
     <!-- 操作按钮区域 -->
     <div class="table-operator">
       <a-button type="link" @click="myHandleAdd" icon="plus">新增</a-button>
-      <a-button type="link" icon="download" @click="handleExportXls('仓库')">导出</a-button>
+      <!--      <a-button type="link" icon="download" @click="handleExportXls('仓库')">导出</a-button>
       <a-upload name="file" :showUploadList="false" :multiple="false" :headers="tokenHeader" :action="importExcelUrl" @change="handleImportExcel">
         <a-button type="link" icon="import">导入</a-button>
-      </a-upload>
+      </a-upload>-->
     </div>
 
     <!-- table区域-begin -->
@@ -57,7 +57,7 @@
   import { JeecgListMixin } from '@/mixins/JeecgListMixin'
   import BasWarehouseModal from './modules/BasWarehouseModal'
   import {filterMultiDictText} from '@/components/dict/JDictSelectUtil'
-  
+
   export default {
     name: "BasWarehouseList",
     mixins:[JeecgListMixin],
@@ -288,7 +288,7 @@
           }
         }
       },
-      
+
     }
   }
 </script>

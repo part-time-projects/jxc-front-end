@@ -27,13 +27,13 @@
               </j-tree-select>
             </a-form-item>
           </a-col>
-          <template v-if="toggleSearchStatus">
+<!--          <template v-if="toggleSearchStatus">
             <a-col :xl="6" :lg="7" :md="8" :sm="24">
               <a-form-item label="税控编码">
                 <a-input placeholder="请输入税控编码" v-model="queryParam.taxCode"></a-input>
               </a-form-item>
             </a-col>
-          </template>
+          </template>-->
           <a-col :xl="6" :lg="7" :md="8" :sm="24">
             <span style="float: left;overflow: hidden;" class="table-page-search-submitButtons">
               <a-button type="primary" @click="searchQuery" icon="search">查询</a-button>
@@ -48,14 +48,14 @@
       </a-form>
     </div>
     <!-- 查询区域-END -->
-    
+
     <!-- 操作按钮区域 -->
     <div class="table-operator">
       <a-button type="link" @click="myHandleAdd" icon="plus">新增</a-button>
-      <a-button type="link" icon="download" @click="handleExportXls('客户')">导出</a-button>
+      <!--      <a-button type="link" icon="download" @click="handleExportXls('客户')">导出</a-button>
       <a-upload name="file" :showUploadList="false" :multiple="false" :headers="tokenHeader" :action="importExcelUrl" @change="handleImportExcel">
         <a-button type="link" icon="import">导入</a-button>
-      </a-upload>
+      </a-upload>-->
     </div>
 
     <!-- table区域-begin -->
@@ -164,12 +164,12 @@
             align:"right",
             dataIndex: 'salePrice'
           },
-          {
+          /*{
             title:'税控编码',
             width:160,
             align:"center",
             dataIndex: 'taxCode'
-          },
+          },*/
           {
             title:'是否启用',
             width:75,
