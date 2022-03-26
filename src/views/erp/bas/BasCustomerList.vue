@@ -159,6 +159,12 @@
             dataIndex: 'corporatePhone'
           },
           {
+            title:'备注',
+            //width:120,
+            align:"center",
+            dataIndex: 'remark'
+          },
+          {
             title:'是否启用',
             width:80,
             align:"center",

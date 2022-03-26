@@ -18,10 +18,10 @@
             <span style="float: left;overflow: hidden;" class="table-page-search-submitButtons">
               <a-button type="primary" @click="searchQuery" icon="search">查询</a-button>
               <a-button @click="searchReset" icon="reload" style="margin-left: 8px">重置</a-button>
-              <a @click="handleToggleSearch" style="margin-left: 8px">
+<!--              <a @click="handleToggleSearch" style="margin-left: 8px">
                 {{ toggleSearchStatus ? '收起' : '展开' }}
                 <a-icon :type="toggleSearchStatus ? 'up' : 'down'"/>
-              </a>
+              </a>-->
             </span>
           </a-col>
 
@@ -32,7 +32,7 @@
 
     <!-- 操作按钮区域 -->
     <div class="table-operator">
-      <a-button type="link" @click="myHandleAdd" icon="plus">新增</a-button>
+      <a-button type="link" @click="myHandleAdd()" icon="plus">新增</a-button>
       <!--      <a-button type="link" icon="download" @click="handleExportXls('客户')">导出</a-button>
       <a-upload name="file" :showUploadList="false" :multiple="false" :headers="tokenHeader" :action="importExcelUrl" @change="handleImportExcel">
         <a-button type="link" icon="import">导入</a-button>
@@ -169,6 +169,12 @@
             dataIndex: 'headquarters'
           },*/
           {
+            title:'备注',
+            //width:140,
+            align:"center",
+            dataIndex: 'remark'
+          },
+          {
             title:'是否启用',
             width:75,
             align:"center",
@@ -202,8 +208,14 @@
       },
 
       myHandleAdd(){
+        /*this.$refs.modalForm.action = "add";
+        this.handleAdd();*/
+
         this.$refs.modalForm.action = "add";
-        this.handleAdd();
+        setTimeout(()=>{
+          this.handleAdd();
+        },300)
+
       },
       myHandleEdit(record){
         this.$refs.modalForm.action = "edit";
