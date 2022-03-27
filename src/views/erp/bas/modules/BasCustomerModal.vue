@@ -6,7 +6,6 @@
     :confirmLoading="confirmLoading"
     :maskClosable="false"
     :keyboard="false"
-    :forceRender="true"
     switchFullscreen
     @cancel="handleCancel">
 
