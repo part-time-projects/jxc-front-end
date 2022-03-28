@@ -10,8 +10,8 @@
             </a-form-item>
           </a-col>-->
           <a-col :xl="6" :lg="7" :md="8" :sm="24">
-            <a-form-item label="名称">
-              <a-input placeholder="请输入名称" v-model="queryParam.name"></a-input>
+            <a-form-item label="查询内容">
+              <a-input placeholder="请输入查询内容" v-model="queryParam.name"></a-input>
             </a-form-item>
           </a-col>
           <a-col :xl="6" :lg="7" :md="8" :sm="24">
@@ -135,7 +135,7 @@
           },
           {
             title:'供应商地址',
-            width:140,
+            //width:140,
             align:"center",
             dataIndex: 'address'
           },

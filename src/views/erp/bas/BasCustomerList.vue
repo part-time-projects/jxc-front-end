@@ -10,18 +10,20 @@
             </a-form-item>
           </a-col>-->
           <a-col :xl="6" :lg="7" :md="8" :sm="24">
-            <a-form-item label="名称">
-              <a-input placeholder="请输入名称" v-model="queryParam.name"></a-input>
+            <a-form-item label="查询内容">
+              <a-input placeholder="请输入查询内容" v-model="queryParam.name"></a-input>
             </a-form-item>
           </a-col>
           <a-col :xl="6" :lg="7" :md="8" :sm="24">
             <span style="float: left;overflow: hidden;" class="table-page-search-submitButtons">
               <a-button type="primary" @click="searchQuery" icon="search">查询</a-button>
               <a-button @click="searchReset" icon="reload" style="margin-left: 8px">重置</a-button>
+              <!--
               <a @click="handleToggleSearch" style="margin-left: 8px">
                 {{ toggleSearchStatus ? '收起' : '展开' }}
                 <a-icon :type="toggleSearchStatus ? 'up' : 'down'"/>
               </a>
+              -->
             </span>
           </a-col>
 
@@ -158,6 +160,12 @@
             align:"center",
             dataIndex: 'corporatePhone'
           },
+          {
+              title:'客户地址',
+              //width:140,
+              align:"center",
+              dataIndex: 'address'
+            },
           {
             title:'备注',
             //width:120,
