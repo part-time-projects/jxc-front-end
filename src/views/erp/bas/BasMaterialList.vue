@@ -130,26 +130,28 @@
             }
           },
           {
-            title:'编码',
+            title:'物料编码',
             fixed:"left",
-            width:160,
+            width:120,
             align:"left",
             dataIndex: 'code',
             scopedSlots: { customRender: 'code' }
           },
           {
-            title:'名称',
+            title:'物料名称',
             align:"left",
             dataIndex: 'name'
           },
           {
             title:'分类',
             align:"left",
+            width:120,
             dataIndex: 'categoryId_dictText'
           },
           {
             title:'规格型号',
             align:"left",
+            width:200,
             dataIndex: 'model'
           },
           {
