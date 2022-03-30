@@ -139,6 +139,7 @@
           },
           {
             title:'物料名称',
+            ellipsis: "true",
             align:"left",
             dataIndex: 'name'
           },
@@ -150,6 +151,7 @@
           },
           {
             title:'规格型号',
+            ellipsis: "true",
             align:"left",
             width:200,
             dataIndex: 'model'
@@ -180,6 +182,7 @@
           },
           {
             title:'备注',
+            ellipsis: "true",
             align:"left",
             dataIndex: 'remark'
           },
