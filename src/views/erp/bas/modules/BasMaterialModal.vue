@@ -96,7 +96,7 @@
   import JDate from '@/components/jeecg/JDate'
   import JDictSelectTag from "@/components/dict/JDictSelectTag"
   import JTreeSelect from '@/components/jeecg/JTreeSelect'
-  import {addPermission,editPermission,queryTreeList, duplicateCheck} from '@/api/api'
+  import {queryTreeListForMaterial} from '@/api/api'
 
   export default {
     name: "BasMaterialModal",
@@ -104,7 +104,7 @@
       JDate,
       JDictSelectTag,
       JTreeSelect,
-      queryTreeList
+      queryTreeListForMaterial
     },
     data () {
       return {
@@ -117,6 +117,7 @@
         model: {},
         treeData:[],
         validateStatus:"",
+        disableSubmit:false,
         labelCol: {
           xs: { span: 24 },
           sm: { span: 6 },
@@ -177,7 +178,7 @@
     methods: {
       loadTree(){
         var that = this;
-        queryTreeList().then((res)=>{
+        queryTreeListForMaterial().then((res)=>{
           if(res.success){
             console.log('----queryTreeList---')
             console.log(res)

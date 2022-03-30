@@ -78,9 +78,14 @@
         <span slot="action" slot-scope="text, record">
           <a @click="myHandleEdit(record)">编辑</a>
           <a-divider type="vertical" />
+          <a href="javascript:;" @click="handleAddSub(record)">添加物料</a>
+          <a-divider type="vertical" />
           <a-dropdown>
             <a class="ant-dropdown-link">更多 <a-icon type="down" /></a>
             <a-menu slot="overlay">
+              <!-- <a-menu-item>
+                <a href="javascript:;" @click="handleAddSub(record)">添加物料</a>
+              </a-menu-item> -->
               <a-menu-item>
                 <a-popconfirm title="确定删除吗?" @confirm="() => handleDelete(record.id)">
                   <a>删除</a>
@@ -210,8 +215,15 @@
       },
 
       myHandleAdd(){
+
         this.$refs.modalForm.action = "add";
         this.handleAdd();
+      },
+      handleAddSub(record) {
+        this.$refs.modalForm.title = "添加子物料";
+        this.$refs.modalForm.localMenuType = 1;
+        this.$refs.modalForm.disableSubmit = false;
+        this.$refs.modalForm.edit({route:true,'parentId':record.id});
       },
       myHandleEdit(record){
         this.$refs.modalForm.action = "edit";
