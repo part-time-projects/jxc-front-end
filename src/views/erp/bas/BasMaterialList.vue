@@ -123,29 +123,28 @@
         description: '物料管理',
         // 表头
         columns: [
+          // {
+          //   title: '#',
+          //   dataIndex: '',
+          //   key:'rowIndex',
+          //   fixed:"left",
+          //   width:40,
+          //   align:"center",
+          //   customRender:function (t,r,index) {
+          //     return parseInt(index)+1;
+          //   }
+          // },
           {
-            title: '#',
-            dataIndex: '',
-            key:'rowIndex',
+            title:'名称22',
             fixed:"left",
-            width:40,
-            align:"center",
-            customRender:function (t,r,index) {
-              return parseInt(index)+1;
-            }
-          },
-          {
-            title:'编码',
-            fixed:"left",
-            width:160,
-            align:"left",
-            dataIndex: 'code',
-            scopedSlots: { customRender: 'code' }
-          },
-          {
-            title:'名称',
             align:"left",
             dataIndex: 'name'
+          },
+          {
+            title:'编码22',
+            align:"center",
+            dataIndex: 'code',
+            scopedSlots: { customRender: 'code' }
           },
           {
             title:'分类',
@@ -165,7 +164,7 @@
           },
           {
             title:'销售价格',
-            width:100,
+            width:70,
             align:"right",
             dataIndex: 'salePrice'
           },
@@ -200,7 +199,7 @@
           delete: "/bas/basMaterial/delete",
           deleteBatch: "/bas/basMaterial/deleteBatch",
           exportXlsUrl: "/bas/basMaterial/exportXls",
-          importExcelUrl: "bas/basMaterial/importExcel",
+          importExcelUrl: "bas/basMaterial/importExcel"
         },
         dictOptions:{},
       }
@@ -217,16 +216,19 @@
       myHandleAdd(){
 
         this.$refs.modalForm.action = "add";
+        this.$refs.modalForm.localMenuType = 0;
         this.handleAdd();
       },
       handleAddSub(record) {
         this.$refs.modalForm.title = "添加子物料";
         this.$refs.modalForm.localMenuType = 1;
         this.$refs.modalForm.disableSubmit = false;
+        this.$refs.modalForm.action = "add";
         this.$refs.modalForm.edit({route:true,'parentId':record.id});
       },
       myHandleEdit(record){
         this.$refs.modalForm.action = "edit";
+        this.$refs.modalForm.localMenuType = 1;
         this.handleEdit(record);
       },
       myHandleDetail(record){
