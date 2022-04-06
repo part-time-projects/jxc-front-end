@@ -76,11 +76,23 @@
         <a slot="code" @click="myHandleDetail(record)" slot-scope="text, record">{{text}}</a>
 
         <span slot="action" slot-scope="text, record">
-          <a @click="myHandleEdit(record)">编辑</a>
+        <a @click="myHandleEdit(record)">编辑</a>
+           <!-- 
+          <a-divider type="vertical" />
+          <a href="javascript:;" @click="handleAddSub(record)">添加物料</a> -->
           <a-divider type="vertical" />
           <a-dropdown>
             <a class="ant-dropdown-link">更多 <a-icon type="down" /></a>
             <a-menu slot="overlay">
+              <!-- <a-menu-item>
+                <a href="javascript:;" @click="handleAddSub(record)">添加物料</a>
+              </a-menu-item> -->
+              <!-- <a-menu-item>
+                <a href="javascript:;"  @click="myHandleEdit(record)">编辑</a>
+              </a-menu-item> -->
+              <a-menu-item>
+                 <a href="javascript:;" @click="handleAddSub(record)">添加物料</a>
+              </a-menu-item>
               <a-menu-item>
                 <a-popconfirm title="确定删除吗?" @confirm="() => handleDelete(record.id)">
                   <a>删除</a>
@@ -118,42 +130,38 @@
         description: '物料管理',
         // 表头
         columns: [
+          // {
+          //   title: '#',
+          //   dataIndex: '',
+          //   key:'rowIndex',
+          //   fixed:"left",
+          //   width:40,
+          //   align:"center",
+          //   customRender:function (t,r,index) {
+          //     return parseInt(index)+1;
+          //   }
+          // },
           {
-            title: '#',
-            dataIndex: '',
-            key:'rowIndex',
-            fixed:"left",
-            width:40,
-            align:"center",
-            customRender:function (t,r,index) {
-              return parseInt(index)+1;
-            }
+            title:'名称',
+            align:"left",
+            dataIndex: 'name',
+            ellipsis:true
           },
           {
-            title:'物料编码',
-            fixed:"left",
-            width:120,
-            align:"left",
+            title:'编码',
+            align:"center",
             dataIndex: 'code',
+            width:90,
             scopedSlots: { customRender: 'code' }
           },
           {
-            title:'物料名称',
-            ellipsis: "true",
-            align:"left",
-            dataIndex: 'name'
-          },
-          {
             title:'分类',
-            align:"left",
-            width:120,
+            align:"center",
             dataIndex: 'categoryId_dictText'
           },
           {
             title:'规格型号',
-            ellipsis: "true",
             align:"left",
-            width:200,
             dataIndex: 'model'
           },
           {
@@ -182,7 +190,6 @@
           },
           {
             title:'备注',
-            ellipsis: "true",
             align:"left",
             dataIndex: 'remark'
           },
@@ -215,11 +222,20 @@
       },
 
       myHandleAdd(){
+
         this.$refs.modalForm.action = "add";
         this.handleAdd();
       },
+      handleAddSub(record) {
+        this.$refs.modalForm.title = "添加子物料";
+        this.$refs.modalForm.localMenuType = 1;
+        this.$refs.modalForm.disableSubmit = false;
+        this.$refs.modalForm.action = "add";
+        this.$refs.modalForm.edit({route:true,'parentId':record.id});
+      },
       myHandleEdit(record){
         this.$refs.modalForm.action = "edit";
+        this.$refs.modalForm.localMenuType = 1;
         this.handleEdit(record);
       },
       myHandleDetail(record){

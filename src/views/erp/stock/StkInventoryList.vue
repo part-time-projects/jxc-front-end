@@ -10,8 +10,18 @@
             </a-form-item>
           </a-col>
           <a-col :xl="6" :lg="7" :md="8" :sm="24">
-            <a-form-item label="物料">
+            <!-- <a-form-item label="物料">
               <j-search-select-tag placeholder="请输入物料" v-model="queryParam.materialId"  dict="bas_material,name,id"/>
+            </a-form-item> -->
+            <!-- 下拉框换成下拉树 -->
+            <a-form-item label="物料">
+              <a-tree-select
+                style="width:100%"
+                :dropdownStyle="{ maxHeight: '300px', overflow: 'auto' }"
+                :treeData="treeData"
+                v-model="queryParam.materialId"
+                placeholder="请选择物料">
+              </a-tree-select>
             </a-form-item>
           </a-col>
           <template v-if="toggleSearchStatus">
@@ -58,9 +68,9 @@
       </a-upload>-->
 
       <a-dropdown v-if="selectedRowKeys.length > 0">
-        <a-menu slot="overlay">
+        <!-- <a-menu slot="overlay">
           <a-menu-item disabled="true" key="1" @click=""><a-icon type="close"/>关闭</a-menu-item>
-        </a-menu>
+        </a-menu> -->
         <a-button style="margin-left: 8px"> 批量操作 <a-icon type="down" /></a-button>
       </a-dropdown>
       <i class="anticon anticon-info-circle ant-alert-icon"></i> 已选择 <a style="font-weight: 600">{{ selectedRowKeys.length }}</a>项
@@ -113,6 +123,7 @@
   import JDictSelectTag from '@/components/dict/JDictSelectTag.vue'
   import JSearchSelectTag from '@/components/dict/JSearchSelectTag'
   import ListColumnsSetter from '../components/ListColumnsSetter'
+  import {queryTreeListForMaterial} from '@/api/api/'
 
   export default {
     name: "StkInventoryList",
@@ -127,6 +138,7 @@
     data () {
       return {
         description: '实时库存',
+        treeData:[],
         // 表头
         columns: [
           {
@@ -261,16 +273,37 @@
       },
       myHandleAdd(){
         this.$refs.modalForm.action = "add";
+        this.loadTree();
         this.handleAdd();
       },
       myHandleEdit(record){
         this.$refs.modalForm.action = "edit";
+        this.loadTree();
         this.handleEdit(record);
       },
       myHandleDetail(record){
         this.$refs.modalForm.action = "detail";
         this.handleDetail(record);
       },
+      loadTree(){
+        var that = this;
+        queryTreeListForMaterial().then((res)=>{
+          if(res.success){
+            console.log('----queryTreeList---')
+            console.log(res)
+            that.treeData = [];
+            let treeList = res.result.treeList
+            for(let a=0;a<treeList.length;a++){
+              let temp = treeList[a];
+              temp.isLeaf = temp.leaf;
+              that.treeData.push(temp);
+            }
+          }
+        });
+      }
+    },
+    mounted(){
+      this.loadTree();
     }
   }
 </script>

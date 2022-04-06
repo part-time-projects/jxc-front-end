@@ -201,6 +201,7 @@
   import EditableTableColumnsSetter from "../../components/EditableTableColumnsSetter";
   import { getFormatDate } from '../../utils/util'
   import { validateEntryNo } from '../../utils/editableTableValidate'
+  import {queryTreeListForMaterial} from '@/api/api/'
 
   export default {
     name: 'PurInBillModal',
@@ -217,7 +218,6 @@
       return {
         width: '1200px',
         moreStatus: false,
-
         // 新增时子表默认添加几行空数据
         addDefaultRowNum: 1,
         validatorRules: {
@@ -285,6 +285,7 @@
         stkIoBillEntryTable: {
           loading: false,
           dataSource: [],
+          treeData:[],
           columns: [
             {
               title: '分录号',
@@ -501,12 +502,29 @@
     },
 
     methods: {
+      loadTree(){
+        var that =  this.stkIoBillEntryTable;
+        queryTreeListForMaterial().then((res)=>{
+          if(res.success){
+            console.log('----queryTreeList---')
+            console.log(res)
+            that.treeData = [];
+            let treeList = res.result.treeList
+            for(let a=0;a<treeList.length;a++){
+              let temp = treeList[a];
+              temp.isLeaf = temp.leaf;
+              that.treeData.push(temp);
+            }
+          }
+        });
+      },
       getAllTable() {
         let values = this.tableKeys.map(key => getRefPromise(this, key))
         return Promise.all(values)
       },
 
       addInit() {
+        this.loadTree();
         //采购入库
         this.model.stockIoType = '101'
         this.model.isRubric = 0

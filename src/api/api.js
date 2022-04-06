@@ -92,6 +92,9 @@ const checkRuleByCode = (params) => getAction('/sys/checkRule/checkByCode', para
 //我的通告
 const getUserNoticeInfo= (params)=>getAction("/sys/sysAnnouncementSend/getMyAnnouncementSend",params);
 
+//物料管理
+const queryTreeListForMaterial = (params)=>getAction("/bas/basMaterial/queryTreeList",params);
+
 export {
   addRole,
   editRole,
@@ -146,7 +149,8 @@ export {
   saveDeptRolePermission,
   queryMyDepartTreeList,
   getUserNoticeInfo,
-  getDictItemsFromCache
+  getDictItemsFromCache,
+  queryTreeListForMaterial
 }
 
 
