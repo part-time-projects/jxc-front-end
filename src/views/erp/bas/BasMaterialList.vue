@@ -76,9 +76,10 @@
         <a slot="code" @click="myHandleDetail(record)" slot-scope="text, record">{{text}}</a>
 
         <span slot="action" slot-scope="text, record">
-          <a @click="myHandleEdit(record)">编辑</a>
+        <a @click="myHandleEdit(record)">编辑</a>
+           <!-- 
           <a-divider type="vertical" />
-          <a href="javascript:;" @click="handleAddSub(record)">添加物料</a>
+          <a href="javascript:;" @click="handleAddSub(record)">添加物料</a> -->
           <a-divider type="vertical" />
           <a-dropdown>
             <a class="ant-dropdown-link">更多 <a-icon type="down" /></a>
@@ -86,6 +87,12 @@
               <!-- <a-menu-item>
                 <a href="javascript:;" @click="handleAddSub(record)">添加物料</a>
               </a-menu-item> -->
+              <!-- <a-menu-item>
+                <a href="javascript:;"  @click="myHandleEdit(record)">编辑</a>
+              </a-menu-item> -->
+              <a-menu-item>
+                 <a href="javascript:;" @click="handleAddSub(record)">添加物料</a>
+              </a-menu-item>
               <a-menu-item>
                 <a-popconfirm title="确定删除吗?" @confirm="() => handleDelete(record.id)">
                   <a>删除</a>
@@ -123,33 +130,33 @@
         description: '物料管理',
         // 表头
         columns: [
-          {
-            title: '#',
-            dataIndex: '',
-            key:'rowIndex',
-            fixed:"left",
-            width:40,
-            align:"center",
-            customRender:function (t,r,index) {
-              return parseInt(index)+1;
-            }
-          },
-          {
-            title:'编码',
-            fixed:"left",
-            width:160,
-            align:"left",
-            dataIndex: 'code',
-            scopedSlots: { customRender: 'code' }
-          },
+          // {
+          //   title: '#',
+          //   dataIndex: '',
+          //   key:'rowIndex',
+          //   fixed:"left",
+          //   width:40,
+          //   align:"center",
+          //   customRender:function (t,r,index) {
+          //     return parseInt(index)+1;
+          //   }
+          // },
           {
             title:'名称',
             align:"left",
-            dataIndex: 'name'
+            dataIndex: 'name',
+            ellipsis:true
+          },
+          {
+            title:'编码',
+            align:"center",
+            dataIndex: 'code',
+            width:90,
+            scopedSlots: { customRender: 'code' }
           },
           {
             title:'分类',
-            align:"left",
+            align:"center",
             dataIndex: 'categoryId_dictText'
           },
           {
@@ -223,10 +230,12 @@
         this.$refs.modalForm.title = "添加子物料";
         this.$refs.modalForm.localMenuType = 1;
         this.$refs.modalForm.disableSubmit = false;
+        this.$refs.modalForm.action = "add";
         this.$refs.modalForm.edit({route:true,'parentId':record.id});
       },
       myHandleEdit(record){
         this.$refs.modalForm.action = "edit";
+        this.$refs.modalForm.localMenuType = 1;
         this.handleEdit(record);
       },
       myHandleDetail(record){

@@ -14,19 +14,27 @@
           <a-input :readOnly="action!=='add'" v-decorator="[ 'batchNo', validatorRules.batchNo]" placeholder="请输入批号"></a-input>
         </a-form-item>
         <a-form-item label="仓库" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <j-dict-select-tag :disabled="action!=='add'" type="list" v-decorator="['warehouseId', validatorRules.warehouseId]" :trigger-change="true" dictCode="bas_warehouse,name,id" placeholder="请选择仓库"/>
+          <j-dict-select-tag :readOnly="action!=='add'" type="list" v-decorator="['warehouseId', validatorRules.warehouseId]" :trigger-change="true" dictCode="bas_warehouse,name,id" placeholder="请选择仓库"/>
         </a-form-item>
         <a-form-item label="物料" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <j-dict-select-tag :disabled="action!=='add'" @change="onMaterialIdChange" type="list" v-decorator="['materialId', validatorRules.materialId]" :trigger-change="true" dictCode="bas_material,name,id" placeholder="请选择物料"/>
+          <!-- <j-dict-select-tag :disabled="action!=='add'" @change="onMaterialIdChange" type="list" v-decorator="['materialId', validatorRules.materialId]" :trigger-change="true" dictCode="bas_material,name,id" placeholder="请选择物料"/> -->
+          <a-tree-select
+            style="width:100%"
+            :dropdownStyle="{ maxHeight: '300px', overflow: 'auto' }"
+            :treeData="treeData"
+            v-decorator="[ 'materialId', validatorRules.materialId]"
+            placeholder="请选择物料"
+            @change="onMaterialIdChange">
+          </a-tree-select>
         </a-form-item>
         <a-form-item label="计量单位" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <j-dict-select-tag disabled type="list" v-decorator="['unitId', validatorRules.unitId]" :trigger-change="true" dictCode="bas_measure_unit,name,id" placeholder="请选择计量单位"/>
+          <j-dict-select-tag :readOnly="action!=='add'" type="list" v-decorator="['unitId', validatorRules.unitId]" :trigger-change="true" dictCode="bas_measure_unit,name,id" placeholder="请选择计量单位"/>
         </a-form-item>
         <a-form-item label="数量" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <a-input-number disabled v-decorator="[ 'qty', validatorRules.qty]" placeholder="请输入数量" style="width: 100%"/>
+          <a-input-number :readOnly="action!=='add'" v-decorator="[ 'qty', validatorRules.qty]" placeholder="请输入数量" style="width: 100%"/>
         </a-form-item>
         <a-form-item label="成本" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <a-input-number disabled  v-decorator="[ 'cost', validatorRules.cost]" placeholder="请输入成本" style="width: 100%"/>
+          <a-input-number :readOnly="action!=='add'"  v-decorator="[ 'cost', validatorRules.cost]" placeholder="请输入成本" style="width: 100%"/>
         </a-form-item>
         <a-form-item label="单供应商" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <j-dict-select-tag :disabled="readOnly" type="list" v-decorator="['isSingleSupplier', validatorRules.isSingleSupplier]" :trigger-change="true" dictCode="yn" placeholder="请选择是否单供应商"/>
@@ -35,7 +43,7 @@
           <j-dict-select-tag :disabled="readOnly" type="list" v-decorator="['supplierId', validatorRules.supplierId]" :trigger-change="true" dictCode="bas_supplier,name,id" placeholder="请选择供应商"/>
         </a-form-item>
         <a-form-item label="是否关闭" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <j-dict-select-tag disabled type="list" v-decorator="['isClosed', validatorRules.isClosed]" :trigger-change="true" dictCode="yn" placeholder="请选择是否关闭"/>
+          <j-dict-select-tag :readOnly="action!=='add'" type="list" v-decorator="['isClosed', validatorRules.isClosed]" :trigger-change="true" dictCode="yn" placeholder="请选择是否关闭"/>
         </a-form-item>
         <a-form-item label="创建时间" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <j-date disabled v-decorator="[ 'createTime', validatorRules.createTime]" :trigger-change="true" style="width: 100%"/>
@@ -69,6 +77,7 @@
   import { validateDuplicateValue } from '@/utils/util'
   import JDate from '@/components/jeecg/JDate'
   import JDictSelectTag from "@/components/dict/JDictSelectTag"
+    import {queryTreeListForMaterial} from '@/api/api/'
 
   export default {
     name: "StkInventoryModal",
@@ -78,6 +87,7 @@
     },
     data () {
       return {
+        treeData:[],
         action: "",
         isSingleSupplier: false,
 
@@ -143,12 +153,28 @@
     },
 
     methods: {
+       loadTree(){
+        var that = this;
+        queryTreeListForMaterial().then((res)=>{
+          if(res.success){
+            console.log('----queryTreeList---')
+            console.log(res)
+            that.treeData = [];
+            let treeList = res.result.treeList
+            for(let a=0;a<treeList.length;a++){
+              let temp = treeList[a];
+              temp.isLeaf = temp.leaf;
+              that.treeData.push(temp);
+            }
+          }
+        });
+      },
       add () {
         this.edit({qty: 0, cost: 0, isClosed:0});
       },
       edit (record) {
         this.form.resetFields();
-
+        this.loadTree();
         this.model = Object.assign({}, record);
         this.visible = true;
         this.$nextTick(() => {

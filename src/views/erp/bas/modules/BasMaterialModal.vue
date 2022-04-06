@@ -20,12 +20,12 @@
           :required="true">
           <span slot="help">{{ validateStatus=='error'?'请选择上级物料':'&nbsp;&nbsp;' }}</span>
           <a-tree-select
-            style="width:100%"
+            :readOnly="action =='add'"
             :dropdownStyle="{ maxHeight: '300px', overflow: 'auto' }"
             :treeData="treeData"
             v-model="model.parentId"
             placeholder="请选择父级物料"
-            :disabled="disableSubmit"
+            :disabled="action !=='add'"
             @change="handleParentIdChange">
           </a-tree-select>
         </a-form-item>
@@ -96,15 +96,14 @@
   import JDate from '@/components/jeecg/JDate'
   import JDictSelectTag from "@/components/dict/JDictSelectTag"
   import JTreeSelect from '@/components/jeecg/JTreeSelect'
-  import {queryTreeListForMaterial} from '@/api/api'
+  import {queryTreeListForMaterial} from '@/api/api/'
 
   export default {
     name: "BasMaterialModal",
     components: {
       JDate,
       JDictSelectTag,
-      JTreeSelect,
-      queryTreeListForMaterial
+      JTreeSelect
     },
     data () {
       return {
