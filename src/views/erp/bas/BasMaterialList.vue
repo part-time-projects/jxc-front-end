@@ -76,10 +76,9 @@
         <a slot="code" @click="myHandleDetail(record)" slot-scope="text, record">{{text}}</a>
 
         <span slot="action" slot-scope="text, record">
-        <a @click="myHandleEdit(record)">编辑</a>
-           <!-- 
+          <a @click="myHandleEdit(record)">编辑</a>
           <a-divider type="vertical" />
-          <a href="javascript:;" @click="handleAddSub(record)">添加物料</a> -->
+          <a href="javascript:;" @click="handleAddSub(record)">添加物料</a>
           <a-divider type="vertical" />
           <a-dropdown>
             <a class="ant-dropdown-link">更多 <a-icon type="down" /></a>
@@ -87,12 +86,6 @@
               <!-- <a-menu-item>
                 <a href="javascript:;" @click="handleAddSub(record)">添加物料</a>
               </a-menu-item> -->
-              <!-- <a-menu-item>
-                <a href="javascript:;"  @click="myHandleEdit(record)">编辑</a>
-              </a-menu-item> -->
-              <a-menu-item>
-                 <a href="javascript:;" @click="handleAddSub(record)">添加物料</a>
-              </a-menu-item>
               <a-menu-item>
                 <a-popconfirm title="确定删除吗?" @confirm="() => handleDelete(record.id)">
                   <a>删除</a>
@@ -142,21 +135,20 @@
           //   }
           // },
           {
-            title:'名称',
+            title:'名称22',
+            fixed:"left",
             align:"left",
-            dataIndex: 'name',
-            ellipsis:true
+            dataIndex: 'name'
           },
           {
-            title:'编码',
+            title:'编码22',
             align:"center",
             dataIndex: 'code',
-            width:90,
             scopedSlots: { customRender: 'code' }
           },
           {
             title:'分类',
-            align:"center",
+            align:"left",
             dataIndex: 'categoryId_dictText'
           },
           {
@@ -172,7 +164,7 @@
           },
           {
             title:'销售价格',
-            width:100,
+            width:70,
             align:"right",
             dataIndex: 'salePrice'
           },
@@ -207,7 +199,7 @@
           delete: "/bas/basMaterial/delete",
           deleteBatch: "/bas/basMaterial/deleteBatch",
           exportXlsUrl: "/bas/basMaterial/exportXls",
-          importExcelUrl: "bas/basMaterial/importExcel",
+          importExcelUrl: "bas/basMaterial/importExcel"
         },
         dictOptions:{},
       }
@@ -224,6 +216,7 @@
       myHandleAdd(){
 
         this.$refs.modalForm.action = "add";
+        this.$refs.modalForm.localMenuType = 0;
         this.handleAdd();
       },
       handleAddSub(record) {
