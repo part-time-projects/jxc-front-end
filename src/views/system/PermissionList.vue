@@ -80,7 +80,7 @@
 </template>
 
 <script>
-  import PermissionModal from './modules/PermissionModal'
+import PermissionModal from './modules/PermissionModal'
   import { getPermissionList } from '@/api/api'
   import { JeecgListMixin } from '@/mixins/JeecgListMixin'
   import PermissionDataRuleList from './PermissionDataRuleList'
@@ -187,7 +187,7 @@
       },
       handleExpandedRowsChange(expandedRows) {
         this.expandedRowKeys = expandedRows
-      },
+      }
     }
   }
 </script>
