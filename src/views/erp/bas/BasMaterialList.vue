@@ -27,6 +27,17 @@
               </j-tree-select>
             </a-form-item>
           </a-col>
+          <a-col :xl="6" :lg="7" :md="8" :sm="24">
+            <a-form-item label="供应商">
+              <j-tree-select
+                  ref="treeSelect"
+                  placeholder="请选择供应商"
+                  v-model="queryParam.supplierId"
+                  dict="bas_supplier,name,id"
+                  pidField="">
+              </j-tree-select>
+            </a-form-item>
+          </a-col>
 <!--          <template v-if="toggleSearchStatus">
             <a-col :xl="6" :lg="7" :md="8" :sm="24">
               <a-form-item label="税控编码">
