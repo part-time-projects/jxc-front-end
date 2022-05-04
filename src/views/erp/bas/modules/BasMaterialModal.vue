@@ -8,27 +8,7 @@
     :visible="visible">
 
     <a-spin :spinning="confirmLoading">
-
       <a-form :form="form">
-         <a-form-item
-          v-show="localMenuType==1"
-          label="上级物料"
-          :labelCol="labelCol"
-          :wrapperCol="wrapperCol"
-          :validate-status="validateStatus"
-          :hasFeedback="true"
-          :required="true">
-          <span slot="help">{{ validateStatus=='error'?'请选择上级物料':'&nbsp;&nbsp;' }}</span>
-          <a-tree-select
-            style="width:100%"
-            :dropdownStyle="{ maxHeight: '300px', overflow: 'auto' }"
-            :treeData="treeData"
-            v-model="model.parentId"
-            placeholder="请选择父级物料"
-            :disabled="disableSubmit"
-            @change="handleParentIdChange">
-          </a-tree-select>
-        </a-form-item>
         <a-form-item label="编码" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input :readOnly="action!=='add'"  v-decorator="['code', validatorRules.code]" placeholder="请输入编码"></a-input>
         </a-form-item>
@@ -96,28 +76,22 @@
   import JDate from '@/components/jeecg/JDate'
   import JDictSelectTag from "@/components/dict/JDictSelectTag"
   import JTreeSelect from '@/components/jeecg/JTreeSelect'
-  import {queryTreeListForMaterial} from '@/api/api'
 
   export default {
     name: "BasMaterialModal",
     components: {
       JDate,
       JDictSelectTag,
-      JTreeSelect,
-      queryTreeListForMaterial
+      JTreeSelect
     },
     data () {
       return {
         action: "",
         form: this.$form.createForm(this),
         title:"操作",
-        localMenuType:0,
         width:600,
         visible: false,
         model: {},
-        treeData:[],
-        validateStatus:"",
-        disableSubmit:false,
         labelCol: {
           xs: { span: 24 },
           sm: { span: 6 },
@@ -161,7 +135,7 @@
         },
         url: {
           add: "/bas/basMaterial/add",
-          edit: "/bas/basMaterial/edit"
+          edit: "/bas/basMaterial/edit",
         }
       }
     },
@@ -176,22 +150,6 @@
     },
 
     methods: {
-      loadTree(){
-        var that = this;
-        queryTreeListForMaterial().then((res)=>{
-          if(res.success){
-            console.log('----queryTreeList---')
-            console.log(res)
-            that.treeData = [];
-            let treeList = res.result.treeList
-            for(let a=0;a<treeList.length;a++){
-              let temp = treeList[a];
-              temp.isLeaf = temp.leaf;
-              that.treeData.push(temp);
-            }
-          }
-        });
-      },
       add () {
         this.edit({});
       },
@@ -199,7 +157,6 @@
         this.form.resetFields();
         this.model = Object.assign({}, record);
         this.visible = true;
-        this.loadTree();
         this.$nextTick(() => {
           this.form.setFieldsValue(pick(this.model,'code','name','categoryId','isEnabled',
             'model','unitId','salePrice','taxCode','remark','createBy','createTime','updateBy','updateTime'))
@@ -248,13 +205,7 @@
         this.form.setFieldsValue(pick(row,'code','name','categoryId','isEnabled',
           'model','unitId','salePrice','taxCode','remark','createBy','createTime','updateBy','updateTime'))
       },
-      handleParentIdChange(value){
-        if(!value){
-          this.validateStatus="error"
-        }else{
-          this.validateStatus="success"
-        }
-      },
+
     }
   }
 </script>

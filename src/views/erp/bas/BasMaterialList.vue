@@ -27,6 +27,7 @@
               </j-tree-select>
             </a-form-item>
           </a-col>
+          <template v-if="toggleSearchStatus">
           <a-col :xl="6" :lg="7" :md="8" :sm="24">
             <a-form-item label="供应商">
               <j-tree-select
@@ -44,7 +45,7 @@
                 <a-input placeholder="请输入税控编码" v-model="queryParam.taxCode"></a-input>
               </a-form-item>
             </a-col>
-          </template>-->
+          </template>
           <a-col :xl="6" :lg="7" :md="8" :sm="24">
             <span style="float: left;overflow: hidden;" class="table-page-search-submitButtons">
               <a-button type="primary" @click="searchQuery" icon="search">查询</a-button>
@@ -89,14 +90,9 @@
         <span slot="action" slot-scope="text, record">
           <a @click="myHandleEdit(record)">编辑</a>
           <a-divider type="vertical" />
-          <a href="javascript:;" @click="handleAddSub(record)">添加物料</a>
-          <a-divider type="vertical" />
           <a-dropdown>
             <a class="ant-dropdown-link">更多 <a-icon type="down" /></a>
             <a-menu slot="overlay">
-              <!-- <a-menu-item>
-                <a href="javascript:;" @click="handleAddSub(record)">添加物料</a>
-              </a-menu-item> -->
               <a-menu-item>
                 <a-popconfirm title="确定删除吗?" @confirm="() => handleDelete(record.id)">
                   <a>删除</a>
@@ -134,28 +130,29 @@
         description: '物料管理',
         // 表头
         columns: [
-          // {
-          //   title: '#',
-          //   dataIndex: '',
-          //   key:'rowIndex',
-          //   fixed:"left",
-          //   width:40,
-          //   align:"center",
-          //   customRender:function (t,r,index) {
-          //     return parseInt(index)+1;
-          //   }
-          // },
           {
-            title:'名称22',
+            title: '#',
+            dataIndex: '',
+            key:'rowIndex',
             fixed:"left",
-            align:"left",
-            dataIndex: 'name'
+            width:40,
+            align:"center",
+            customRender:function (t,r,index) {
+              return parseInt(index)+1;
+            }
           },
           {
-            title:'编码22',
-            align:"center",
+            title:'编码',
+            fixed:"left",
+            width:160,
+            align:"left",
             dataIndex: 'code',
             scopedSlots: { customRender: 'code' }
+          },
+          {
+            title:'名称',
+            align:"left",
+            dataIndex: 'name'
           },
           {
             title:'分类',
@@ -175,16 +172,16 @@
           },
           {
             title:'销售价格',
-            width:70,
+            width:100,
             align:"right",
             dataIndex: 'salePrice'
           },
-          /*{
+          {
             title:'税控编码',
             width:160,
             align:"center",
             dataIndex: 'taxCode'
-          },*/
+          },
           {
             title:'是否启用',
             width:75,
@@ -225,21 +222,11 @@
       },
 
       myHandleAdd(){
-
         this.$refs.modalForm.action = "add";
-        this.$refs.modalForm.localMenuType = 0;
         this.handleAdd();
-      },
-      handleAddSub(record) {
-        this.$refs.modalForm.title = "添加子物料";
-        this.$refs.modalForm.localMenuType = 1;
-        this.$refs.modalForm.disableSubmit = false;
-        this.$refs.modalForm.action = "add";
-        this.$refs.modalForm.edit({route:true,'parentId':record.id});
       },
       myHandleEdit(record){
         this.$refs.modalForm.action = "edit";
-        this.$refs.modalForm.localMenuType = 1;
         this.handleEdit(record);
       },
       myHandleDetail(record){
