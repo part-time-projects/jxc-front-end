@@ -34,7 +34,7 @@ module.exports = {
       .set('@layout', resolve('src/layout'))
       .set('@static', resolve('src/static'))
       .set('@mobile', resolve('src/modules/mobile'))
-
+    console.log("process.env.NODE_ENV="+process.env.NODE_ENV);
     //生产环境，开启js\css压缩
     if (process.env.NODE_ENV === 'production') {
         config.plugin('compressionPlugin').use(new CompressionPlugin({
