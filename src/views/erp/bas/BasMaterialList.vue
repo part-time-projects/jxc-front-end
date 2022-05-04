@@ -27,7 +27,6 @@
               </j-tree-select>
             </a-form-item>
           </a-col>
-          <template v-if="toggleSearchStatus">
           <a-col :xl="6" :lg="7" :md="8" :sm="24">
             <a-form-item label="供应商">
               <j-tree-select
@@ -45,7 +44,7 @@
                 <a-input placeholder="请输入税控编码" v-model="queryParam.taxCode"></a-input>
               </a-form-item>
             </a-col>
-          </template>
+          </template>-->
           <a-col :xl="6" :lg="7" :md="8" :sm="24">
             <span style="float: left;overflow: hidden;" class="table-page-search-submitButtons">
               <a-button type="primary" @click="searchQuery" icon="search">查询</a-button>
