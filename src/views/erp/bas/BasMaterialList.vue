@@ -151,6 +151,7 @@
           {
             title:'名称',
             align:"left",
+            ellipsis: true,
             dataIndex: 'name'
           },
           {
