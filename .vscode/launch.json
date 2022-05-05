@@ -1,0 +1,32 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",      
+            "request": "launch",
+            "name": "Launch Program",
+            // "console": "none",                 // 只输出到“调试控制台”      
+            // "console": "externalTerminal",     // 外部终端调试器
+            "console": "integratedTerminal",      // 内部终端调试器，同时输出到“调试控制台”和内置“终端”
+            // "console": "internalConsole",      // 新版本VScode的选项，仅出输出到“调试控制台”
+            "skipFiles": [
+              "<node_internals>/**"
+            ],
+            // "program": "${workspaceFolder}/node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+            "program": "${workspaceFolder}/yarn run serve",
+            "args": [
+              "--inline",
+              "--progress",
+              "--config",
+              "build/webpack.dev.conf.js"
+            ]
+        },
+        {
+            "name": "Launch Chrome",
+            "request": "launch",
+            "type": "pwa-chrome",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}"
+        },
+    ]
+}
