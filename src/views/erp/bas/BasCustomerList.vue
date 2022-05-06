@@ -10,18 +10,18 @@
             </a-form-item>
           </a-col>-->
           <a-col :xl="6" :lg="7" :md="8" :sm="24">
-            <a-form-item label="名称">
-              <a-input placeholder="请输入名称" v-model="queryParam.name"></a-input>
+            <a-form-item label="内容">
+              <a-input placeholder="支持名称、联系人、地址、备注查询" v-model="queryParam.name"></a-input>
             </a-form-item>
           </a-col>
           <a-col :xl="6" :lg="7" :md="8" :sm="24">
             <span style="float: left;overflow: hidden;" class="table-page-search-submitButtons">
               <a-button type="primary" @click="searchQuery" icon="search">查询</a-button>
               <a-button @click="searchReset" icon="reload" style="margin-left: 8px">重置</a-button>
-              <a @click="handleToggleSearch" style="margin-left: 8px">
+<!--              <a @click="handleToggleSearch" style="margin-left: 8px">
                 {{ toggleSearchStatus ? '收起' : '展开' }}
                 <a-icon :type="toggleSearchStatus ? 'up' : 'down'"/>
-              </a>
+              </a>-->
             </span>
           </a-col>
 
@@ -59,14 +59,17 @@
         <span slot="action" slot-scope="text, record">
           <a @click="myHandleEdit(record)">编辑</a>
           <a-divider type="vertical" />
-          <a-dropdown>
+          <a-popconfirm title="确定删除吗?" @confirm="() => handleDelete(record.id)">
+            <a>删除</a>
+          </a-popconfirm>
+
+<!--          <a-dropdown>
             <a class="ant-dropdown-link">更多 <a-icon type="down" /></a>
             <a-menu slot="overlay">
               <a-menu-item>
-                 <a-popconfirm title="确定删除吗?" @confirm="() => handleDelete(record.id)">删除</a-popconfirm>
              </a-menu-item>
             </a-menu>
-          </a-dropdown>
+          </a-dropdown>-->
         </span>
 
       </a-table>
@@ -108,7 +111,7 @@
             width:160,
             align:"left",
             dataIndex: 'code',
-            scopedSlots: { customRender: 'code' }
+            //scopedSlots: { customRender: 'code' }
           },
           {
             title:'名称',

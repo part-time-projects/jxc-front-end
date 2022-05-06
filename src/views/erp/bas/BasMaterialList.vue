@@ -4,17 +4,17 @@
     <div class="table-page-search-wrapper">
       <a-form layout="inline" @keyup.enter.native="searchQuery">
         <a-row :gutter="24">
-          <a-col :xl="6" :lg="7" :md="8" :sm="24">
+          <a-col :xl="4" :lg="7" :md="8" :sm="24">
             <a-form-item label="编码">
               <a-input placeholder="请输入编码" v-model="queryParam.code"></a-input>
             </a-form-item>
           </a-col>
-          <a-col :xl="6" :lg="7" :md="8" :sm="24">
+          <a-col :xl="4" :lg="7" :md="8" :sm="24">
             <a-form-item label="名称">
               <a-input placeholder="请输入名称" v-model="queryParam.name"></a-input>
             </a-form-item>
           </a-col>
-          <a-col :xl="6" :lg="7" :md="8" :sm="24">
+          <a-col :xl="5" :lg="7" :md="8" :sm="24">
             <a-form-item label="物料分类">
               <j-tree-select
                 ref="treeSelect"
@@ -24,6 +24,17 @@
                 pidField="pid"
                 pidValue="0"
                 hasChildField="has_child">
+              </j-tree-select>
+            </a-form-item>
+          </a-col>
+          <a-col :xl="5" :lg="7" :md="8" :sm="24">
+            <a-form-item label="供应商">
+              <j-tree-select
+                  ref="treeSelect"
+                  placeholder="请选择供应商"
+                  v-model="queryParam.supplierId"
+                  dict="bas_supplier,name,id"
+                  pidField="">
               </j-tree-select>
             </a-form-item>
           </a-col>
@@ -79,8 +90,8 @@
           <a @click="myHandleEdit(record)">编辑</a>
           <a-divider type="vertical" />
           <a-popconfirm title="确定删除吗?" @confirm="() => handleDelete(record.id)">
-                  <a>删除</a>
-                </a-popconfirm>
+            <a>删除</a>
+          </a-popconfirm>
 <!--          <a-divider type="vertical" />
           <a-dropdown>
            <a class="ant-dropdown-link">更多 <a-icon type="down" /></a>
