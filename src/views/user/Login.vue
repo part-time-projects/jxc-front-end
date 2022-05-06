@@ -27,10 +27,10 @@
             </a-input>
           </a-form-item>
 
-          <a-row :gutter="0">
+<!--          <a-row :gutter="0">
             <a-col :span="16">
               <a-form-item>
-                <!--20200510 cfm: 为方便测试，不输入验证码可： default-value="xxxx"-->
+                &lt;!&ndash;20200510 cfm: 为方便测试，不输入验证码可： default-value="xxxx"&ndash;&gt;
                 <a-input
                   v-decorator="['inputCode']"
                   size="large"
@@ -46,7 +46,7 @@
               <img v-if="requestCodeSuccess" style="margin-top: 2px;" :src="randCodeImage" @click="handleChangeCheckCode"/>
               <img v-else style="margin-top: 2px;" src="../../assets/checkcode.png" @click="handleChangeCheckCode"/>
             </a-col>
-          </a-row>
+          </a-row>-->
 
         </a-tab-pane>
         <!--
