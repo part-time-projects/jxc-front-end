@@ -41,9 +41,9 @@
         <a-form-item label="销售价格" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input-number :disabled="readOnly" v-decorator="['salePrice', validatorRules.salePrice]" style="width: 100%"/>
         </a-form-item>
-        <a-form-item label="税控编码" :labelCol="labelCol" :wrapperCol="wrapperCol">
+<!--        <a-form-item label="税控编码" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input :readOnly="readOnly" v-decorator="['taxCode']" ></a-input>
-        </a-form-item>
+        </a-form-item>-->
         <a-form-item label="是否启用" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <j-dict-select-tag :disabled="readOnly" type="list" v-decorator="['isEnabled', validatorRules.isEnabled]"
                              :trigger-change="true" dictCode="yn" placeholder="请选择是否启用"/>

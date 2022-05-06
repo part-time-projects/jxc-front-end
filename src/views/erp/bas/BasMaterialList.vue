@@ -27,21 +27,21 @@
               </j-tree-select>
             </a-form-item>
           </a-col>
-          <template v-if="toggleSearchStatus">
+<!--          <template v-if="toggleSearchStatus">
             <a-col :xl="6" :lg="7" :md="8" :sm="24">
               <a-form-item label="税控编码">
                 <a-input placeholder="请输入税控编码" v-model="queryParam.taxCode"></a-input>
               </a-form-item>
             </a-col>
-          </template>
+          </template>-->
           <a-col :xl="6" :lg="7" :md="8" :sm="24">
             <span style="float: left;overflow: hidden;" class="table-page-search-submitButtons">
               <a-button type="primary" @click="searchQuery" icon="search">查询</a-button>
               <a-button @click="searchReset" icon="reload" style="margin-left: 8px">重置</a-button>
-              <a @click="handleToggleSearch" style="margin-left: 8px">
+<!--              <a @click="handleToggleSearch" style="margin-left: 8px">
                 {{ toggleSearchStatus ? '收起' : '展开' }}
                 <a-icon :type="toggleSearchStatus ? 'up' : 'down'"/>
-              </a>
+              </a>-->
             </span>
           </a-col>
         </a-row>
@@ -52,10 +52,10 @@
     <!-- 操作按钮区域 -->
     <div class="table-operator">
       <a-button type="link" @click="myHandleAdd" icon="plus">新增</a-button>
-      <a-button type="link" icon="download" @click="handleExportXls('客户')">导出</a-button>
+<!--      <a-button type="link" icon="download" @click="handleExportXls('客户')">导出</a-button>
       <a-upload name="file" :showUploadList="false" :multiple="false" :headers="tokenHeader" :action="importExcelUrl" @change="handleImportExcel">
         <a-button type="link" icon="import">导入</a-button>
-      </a-upload>
+      </a-upload>-->
     </div>
 
     <!-- table区域-begin -->
@@ -78,16 +78,18 @@
         <span slot="action" slot-scope="text, record">
           <a @click="myHandleEdit(record)">编辑</a>
           <a-divider type="vertical" />
-          <a-dropdown>
-            <a class="ant-dropdown-link">更多 <a-icon type="down" /></a>
-            <a-menu slot="overlay">
-              <a-menu-item>
-                <a-popconfirm title="确定删除吗?" @confirm="() => handleDelete(record.id)">
+          <a-popconfirm title="确定删除吗?" @confirm="() => handleDelete(record.id)">
                   <a>删除</a>
                 </a-popconfirm>
+<!--          <a-divider type="vertical" />
+          <a-dropdown>
+           <a class="ant-dropdown-link">更多 <a-icon type="down" /></a>
+            <a-menu slot="overlay">
+              <a-menu-item>
+
               </a-menu-item>
             </a-menu>
-          </a-dropdown>
+          </a-dropdown>-->
         </span>
 
       </a-table>
@@ -131,15 +133,16 @@
           },
           {
             title:'编码',
-            fixed:"left",
-            width:160,
+            //fixed:"left",
+            width:120,
             align:"left",
             dataIndex: 'code',
-            scopedSlots: { customRender: 'code' }
+            //scopedSlots: { customRender: 'code' }
           },
           {
             title:'名称',
             align:"left",
+            ellipsis: true,
             dataIndex: 'name'
           },
           {
@@ -171,12 +174,12 @@
             align:"right",
             dataIndex: 'salePrice'
           },
-          {
+          /*{
             title:'税控编码',
             width:160,
             align:"center",
             dataIndex: 'taxCode'
-          },
+          },*/
           {
             title:'是否启用',
             width:75,
