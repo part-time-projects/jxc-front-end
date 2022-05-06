@@ -159,6 +159,13 @@
             dataIndex: 'unitId_dictText'
           },
           {
+            title:'供应商',
+            width:160,
+            align:"center",
+            ellipsis: true,
+            dataIndex: 'supplierId_dictText'
+          },
+          {
             title:'销售价格',
             width:100,
             align:"right",

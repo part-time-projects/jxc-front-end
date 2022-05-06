@@ -34,6 +34,10 @@
           <j-dict-select-tag :disabled="readOnly" type="list" v-decorator="['unitId', validatorRules.unitId]"
                              :trigger-change="true" dictCode="bas_measure_unit,name,id" placeholder="请选择计量单位"/>
         </a-form-item>
+        <a-form-item label="供应商" :labelCol="labelCol" :wrapperCol="wrapperCol">
+          <j-dict-select-tag :disabled="readOnly" type="list" v-decorator="['supplierId', validatorRules.supplierId]"
+                             :trigger-change="true" dictCode="bas_supplier,name,id" placeholder="请选择供应商"/>
+        </a-form-item>
         <a-form-item label="销售价格" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input-number :disabled="readOnly" v-decorator="['salePrice', validatorRules.salePrice]" style="width: 100%"/>
         </a-form-item>
@@ -122,6 +126,11 @@
               { required: true, message: '请输入分类!'},
             ]
           },
+          supplierId: {
+            rules: [
+              { required: true, message: '请选择供应商!'},
+            ]
+          },
           isEnabled: {
             rules: [
               { required: true, message: '请输入是否启用!'},
@@ -158,7 +167,7 @@
         this.model = Object.assign({}, record);
         this.visible = true;
         this.$nextTick(() => {
-          this.form.setFieldsValue(pick(this.model,'code','name','categoryId','isEnabled',
+          this.form.setFieldsValue(pick(this.model,'code','name','categoryId','isEnabled','supplierId',
             'model','unitId','salePrice','taxCode','remark','createBy','createTime','updateBy','updateTime'))
         })
       },
