@@ -255,6 +255,7 @@
             {required: true, message: '请输入编码!'},
           ]},
           name: {rules: [
+              {required: true, message: '请输入客户名称!'},
           ]},
           shortName: {rules: [
           ]},

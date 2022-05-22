@@ -263,6 +263,7 @@
             {required: true, message: '请输入编码!'},
           ]},
           name: {rules: [
+              {required:true, message: '请输入公司名称!'}
           ]},
           shortName: {rules: [
           ]},
